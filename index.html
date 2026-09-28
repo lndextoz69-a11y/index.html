@@ -130,18 +130,18 @@
             </div>
         </div>
 
-        <!-- ================= หมวดที่ 5: แก๊ส ข้าว การเงิน ================= -->
+                <!-- ================= หมวดที่ 5: แก๊ส ข้าว การเงิน ================= -->
         <div class="section-box">
             <div class="vertical-list">
                 <div class="row-item">
                     <div class="img-box-sm"><img src="ลิงก์รูปแก๊ส.jpg" alt="แก๊ส"></div>
                     <div class="label-inline">แก๊ส</div>
-                    <div class="input-group-inline"><input type="number" placeholder="กี่ถัง"></div>
+                    <div class="input-group-inline"><input type="number" id="gas" value="0" oninput="calculateTotal()" placeholder="กี่ถัง"></div>
                 </div>
                 <div class="row-item">
                     <div class="img-box-sm"><img src="ลิงก์รูปข้าว.jpg" alt="ข้าว"></div>
                     <div class="label-inline">ข้าว</div>
-                    <div class="input-group-inline"><input type="number" placeholder="กี่รอบ"></div>
+                    <div class="input-group-inline"><input type="number" id="rice" value="0" oninput="calculateTotal()" placeholder="กี่รอบ"></div>
                 </div>
                 <div class="row-item">
                     <div class="img-box-sm"><img src="ลิงก์รูปกรุงไทย.jpg" alt="กรุงไทย"></div>
@@ -155,6 +155,7 @@
                 </div>
             </div>
         </div>
+        
 
         <!-- ================= สรุปยอดรวม ================= -->
         <div class="summary-formula-box">
