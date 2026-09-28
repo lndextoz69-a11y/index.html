@@ -13,9 +13,8 @@ function calculateTotal() {
     document.getElementById('totalResult').innerText = total.toLocaleString() + " บาท";
 }
 
-// ฟังก์ชันคัดลอกข้อมูลสรุป (ตรวจสอบและซ่อนรายการที่ไม่ได้กรอกข้อมูลทิ้งทันที)
+// ฟังก์ชันคัดลอกข้อมูลสรุปตามรูปแบบที่คุณต้องการ
 function copyData() {
-    // ดึงค่าช่องการเงิน
     let krungthaiVal = parseFloat(document.getElementById('krungthai').value) || 0;
     let cashVal = parseFloat(document.getElementById('cash').value) || 0;
     let gasVal = parseFloat(document.getElementById('gas').value) || 0;
@@ -23,10 +22,9 @@ function copyData() {
     
     let totalVal = document.getElementById('totalResult').innerText;
 
-    // เริ่มต้นสร้างข้อความหลัก
-    let textLines = ["สรุปยอดส่งงาน:"];
+    let textLines = [];
 
-    // --- ไก่สด ---
+    // --- 1. ไก่สด ---
     let freshNs1 = document.getElementById('fresh_ns1')?.value || "";
     let freshNs2 = document.getElementById('fresh_ns2')?.value || "";
     let freshNong1 = document.getElementById('fresh_nong1')?.value || "";
@@ -36,87 +34,89 @@ function copyData() {
     let freshBone1 = document.getElementById('fresh_bone1')?.value || "";
     let freshBone2 = document.getElementById('fresh_bone2')?.value || "";
 
-    // ตรวจสอบแต่ละรายการของไก่สด ถ้ากรอกค่อยดึงมาแสดง
-    let freshList = [];
-    if (freshNs1 || freshNs2) freshList.push(`- น.ส: ${freshNs1}/${freshNs2}`);
-    if (freshNong1 || freshNong2) freshList.push(`- น่อง: ${freshNong1}/${freshNong2}`);
-    if (freshPeek1 || freshPeek2) freshList.push(`- ปีก: ${freshPeek1}/${freshPeek2}`);
-    if (freshBone1 || freshBone2) freshList.push(`- โครง: ${freshBone1}/${freshBone2}`);
+    let freshLines = [];
+    if (freshNs1 || freshNs2) freshLines.push(`น.ส (${freshNs1}/${freshNs2})`);
+    if (freshNong1 || freshNong2) freshLines.push(`น่อง (${freshNong1}/${freshNong2})`);
+    if (freshPeek1 || freshPeek2) freshLines.push(`ปีก (${freshPeek1}/${freshPeek2})`);
+    if (freshBone1 || freshBone2) freshLines.push(`โครง (${freshBone1}/${freshBone2})`);
 
-    if (freshList.length > 0) {
+    if (freshLines.length > 0) {
         textLines.push("ไก่สด");
-        textLines.push(...freshList);
+        textLines.push(...freshLines);
     }
 
-    // --- ไก่ทอด ---
+    // --- 2. ไก่ทอด ---
     let friedNs = document.getElementById('fried_ns')?.value || "";
     let friedNong = document.getElementById('fried_nong')?.value || "";
     let friedPeek = document.getElementById('fried_peek')?.value || "";
     let friedBone = document.getElementById('fried_bone')?.value || "";
 
-    let friedList = [];
-    if (friedNs) friedList.push(`- น.ส: ${friedNs}`);
-    if (friedNong) friedList.push(`- น่อง: ${friedNong}`);
-    if (friedPeek) friedList.push(`- ปีก: ${friedPeek}`);
-    if (friedBone) friedList.push(`- โครง: ${friedBone}`);
+    let friedLines = [];
+    if (friedNs) friedLines.push(`น.ส (${friedNs})`);
+    if (friedNong) friedLines.push(`น่อง (${friedNong})`);
+    if (friedPeek) friedLines.push(`ปีก (${friedPeek})`);
+    if (friedBone) friedLines.push(`โครง (${friedBone})`);
 
-    if (friedList.length > 0) {
+    if (friedLines.length > 0) {
         textLines.push("ไก่ทอด");
-        textLines.push(...friedList);
+        textLines.push(...friedLines);
     }
 
-    // --- ไก่เหลือ ---
+    // --- 3. ไก่เหลือ ---
     let leftNs = document.getElementById('left_ns')?.value || "";
     let leftNong = document.getElementById('left_nong')?.value || "";
     let leftPeek = document.getElementById('left_peek')?.value || "";
     let leftBone = document.getElementById('left_bone')?.value || "";
 
-    let leftList = [];
-    if (leftNs) leftList.push(`- น.ส: ${leftNs}`);
-    if (leftNong) leftList.push(`- น่อง: ${leftNong}`);
-    if (leftPeek) leftList.push(`- ปีก: ${leftPeek}`);
-    if (leftBone) leftList.push(`- โครง: ${leftBone}`);
+    let leftLines = [];
+    if (leftNs) leftLines.push(`น.ส (${leftNs})`);
+    if (leftNong) leftLines.push(`น่อง (${leftNong})`);
+    if (leftPeek) leftLines.push(`ปีก (${leftPeek})`);
+    if (leftBone) leftLines.push(`โครง (${leftBone})`);
 
-    if (leftList.length > 0) {
+    if (leftLines.length > 0) {
         textLines.push("ไก่เหลือ");
-        textLines.push(...leftList);
+        textLines.push(...leftLines);
     }
 
-    // --- ไก่กิน ---
+    // --- 4. ไก่กิน ---
     let eatNs = document.getElementById('eat_ns')?.value || "";
     let eatNong = document.getElementById('eat_nong')?.value || "";
     let eatPeek = document.getElementById('eat_peek')?.value || "";
     let eatBone = document.getElementById('eat_bone')?.value || "";
 
-    let eatList = [];
-    if (eatNs) eatList.push(`- น.ส: ${eatNs}`);
-    if (eatNong) eatList.push(`- น่อง: ${eatNong}`);
-    if (eatPeek) eatList.push(`- ปีก: ${eatPeek}`);
-    if (eatBone) eatList.push(`- โครง: ${eatBone}`);
+    let eatLines = [];
+    if (eatNs) eatLines.push(`น.ส (${eatNs})`);
+    if (eatNong) eatLines.push(`น่อง (${eatNong})`);
+    if (eatPeek) eatLines.push(`ปีก (${eatPeek})`);
+    if (eatBone) eatLines.push(`โครง (${eatBone})`);
 
-    if (eatList.length > 0) {
+    if (eatLines.length > 0) {
         textLines.push("ไก่กิน");
-        textLines.push(...eatList);
+        textLines.push(...eatLines);
     }
 
-    // --- แก๊ส ข้าว ยอดโอน เงินสด รวมยอด ---
+    // --- 5. แก๊ส, ข้าว, ยอดโอน, เงินสด, รวมยอด ---
     if (gasVal > 0) {
-        textLines.push(`แก๊ส: ${gasVal}`);
+        textLines.push(`แก๊ส (${gasVal})`);
     }
+    
     if (riceVal > 0) {
         let riceResult = riceVal * 11;
-        textLines.push(`ข้าว: ${riceResult}`);
+        textLines.push(`ข้าว (${riceResult})`);
     }
+    
     if (krungthaiVal > 0) {
-        textLines.push(`ยอดโอน: ${krungthaiVal}`);
+        textLines.push(`ยอดโอน (${krungthaiVal})`);
     }
+    
     if (cashVal > 0) {
-        textLines.push(`เงินสด: ${cashVal}`);
+        textLines.push(`เงินสด (${cashVal})`);
     }
 
-    textLines.push(`รวมยอด: ${totalVal}`);
+    textLines.push(`รวมยอด (${totalVal})`);
 
-    // รวมข้อความทั้งหมดคั่นด้วยบรรทัดใหม่
+    // รวมข้อความทั้งหมด
     let textToCopy = textLines.join('\n');
 
     navigator.clipboard.writeText(textToCopy).then(() => {
