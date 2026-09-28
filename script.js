@@ -3,17 +3,17 @@ function calculateTotal() {
     let krungthai = parseFloat(document.getElementById('krungthai').value) || 0;
     let cash = parseFloat(document.getElementById('cash').value) || 0;
     
-    // แก๊ส: ถ้ามีใส่จำนวนถัง จะเอาไปคูณ 450 แล้วบวกเข้ายอดรวม
+    // แก๊ส: ถังละ 450 บาท
     let gasCount = parseFloat(document.getElementById('gas').value) || 0;
     let gasTotal = gasCount * 450; 
 
-    // รวมยอดทั้งหมด: กรุงไทย + เงินสด + แก๊ส (ไม่รวมข้าว)
+    // รวมยอด: กรุงไทย + เงินสด + แก๊ส (ไม่รวมข้าว)
     let total = krungthai + cash + gasTotal;
 
     document.getElementById('totalResult').innerText = total.toLocaleString() + " บาท";
 }
 
-// ฟังก์ชันคัดลอกข้อมูลสรุป (แสดงทุกบรรทัดครบถ้วน ลบเฉพาะวงเล็บเมื่อไม่มีข้อมูล)
+// ฟังก์ชันคัดลอกข้อมูลสรุป
 function copyData() {
     let krungthaiVal = parseFloat(document.getElementById('krungthai').value) || 0;
     let cashVal = parseFloat(document.getElementById('cash').value) || 0;
@@ -22,58 +22,60 @@ function copyData() {
     
     let totalVal = document.getElementById('totalResult').innerText;
 
-    // ฟังก์ชันช่วยเช็กค่า ถ้ามีให้ใส่ในวงเล็บ ถ้าไม่มีให้เว้นว่างในวงเล็บหรือลบวงเล็บออกตามต้องการ
-    // เงื่อนไข: ถ้าไม่มีข้อมูล ให้ลบวงเล็บทิ้ง เหลือแต่ข้อความข้างหน้า
+    // ฟังก์ชันช่วยจัดการบรรทัด: ถ้ามีข้อมูลให้ใส่ในวงเล็บ ถ้าไม่มีให้ลบวงเล็บทิ้งเหลือแค่ชื่อหัวข้อ
     function formatLine(label, val) {
-        if (val !== "" && val !== null && val !== undefined && val !== 0 && val !== "0") {
+        if (val !== "" && val !== null && val !== undefined && val !== 0 && val !== "0" && val !== "0/0") {
             return `${label} (${val})`;
         } else {
-            return `${label}`; // ไม่มีข้อมูล เหลือแค่ข้อความข้างหน้า ไม่มีวงเล็บ
+            return `${label}`; // ไม่มีข้อมูล ลบวงเล็บทิ้ง เหลือแค่หัวข้อ
         }
     }
 
-    // --- ดึงข้อมูลแต่ละช่อง ---
-    let freshNs1 = document.getElementById('fresh_ns1')?.value || "";
-    let freshNs2 = document.getElementById('fresh_ns2')?.value || "";
-    let freshNsVal = (freshNs1 || freshNs2) ? `${freshNs1}/${freshNs2}` : "";
+    // --- ดึงข้อมูลไก่สด (อันที่ 1: น.ส, อันที่ 2: น่อง, อันที่ 3: ปีก, อันที่ 4: โครง) ---
+    let f_ns1 = document.getElementById('fresh_ns1')?.value || "";
+    let f_ns2 = document.getElementById('fresh_ns2')?.value || "";
+    let freshNs = (f_ns1 || f_ns2) ? `${f_ns1}/${f_ns2}` : "";
 
-    let freshNong1 = document.getElementById('fresh_nong1')?.value || "";
-    let freshNong2 = document.getElementById('fresh_nong2')?.value || "";
-    let freshNongVal = (freshNong1 || freshNong2) ? `${freshNong1}/${freshNong2}` : "";
+    let f_nong1 = document.getElementById('fresh_nong1')?.value || "";
+    let f_nong2 = document.getElementById('fresh_nong2')?.value || "";
+    let freshNong = (f_nong1 || f_nong2) ? `${f_nong1}/${f_nong2}` : "";
 
-    let freshPeek1 = document.getElementById('fresh_peek1')?.value || "";
-    let freshPeek2 = document.getElementById('fresh_peek2')?.value || "";
-    let freshPeekVal = (freshPeek1 || freshPeek2) ? `${freshPeek1}/${freshPeek2}` : "";
+    let f_peek1 = document.getElementById('fresh_peek1')?.value || "";
+    let f_peek2 = document.getElementById('fresh_peek2')?.value || "";
+    let freshPeek = (f_peek1 || f_peek2) ? `${f_peek1}/${f_peek2}` : "";
 
-    let freshBone1 = document.getElementById('fresh_bone1')?.value || "";
-    let freshBone2 = document.getElementById('fresh_bone2')?.value || "";
-    let freshBoneVal = (freshBone1 || freshBone2) ? `${freshBone1}/${freshBone2}` : "";
+    let f_bone1 = document.getElementById('fresh_bone1')?.value || "";
+    let f_bone2 = document.getElementById('fresh_bone2')?.value || "";
+    let freshBone = (f_bone1 || f_bone2) ? `${f_bone1}/${f_bone2}` : "";
 
-
+    // --- ดึงข้อมูลไก่ทอด ---
     let friedNs = document.getElementById('fried_ns')?.value || "";
     let friedNong = document.getElementById('fried_nong')?.value || "";
     let friedPeek = document.getElementById('fried_peek')?.value || "";
     let friedBone = document.getElementById('fried_bone')?.value || "";
 
+    // --- ดึงข้อมูลไก่เหลือ ---
     let leftNs = document.getElementById('left_ns')?.value || "";
     let leftNong = document.getElementById('left_nong')?.value || "";
     let leftPeek = document.getElementById('left_peek')?.value || "";
     let leftBone = document.getElementById('left_bone')?.value || "";
 
+    // --- ดึงข้อมูลไก่กิน ---
     let eatNs = document.getElementById('eat_ns')?.value || "";
     let eatNong = document.getElementById('eat_nong')?.value || "";
     let eatPeek = document.getElementById('eat_peek')?.value || "";
     let eatBone = document.getElementById('eat_bone')?.value || "";
 
+    // ข้าว: เอาจำนวนที่กรอกไปคูณ 11
     let riceResult = riceVal > 0 ? (riceVal * 11) : "";
 
-    // --- จัดเรียงข้อความทุกบรรทัดแบบห้ามตกหล่น ---
+    // --- เรียงบรรทัดทั้งหมดครบถ้วนตามต้องการ ห้ามลบแม้แต่บรรทัดเดียว ---
     let textLines = [
         "ไก่สด",
-        formatLine("น.ส", freshNsVal),
-        formatLine("น่อง", freshNongVal),
-        formatLine("ปีก", freshPeekVal),
-        formatLine("โครง", freshBoneVal),
+        formatLine("น.ส", freshNs),
+        formatLine("น่อง", freshNong),
+        formatLine("ปีก", freshPeek),
+        formatLine("โครง", freshBone),
         "",
         "ไก่ทอด",
         formatLine("น.ส", friedNs),
