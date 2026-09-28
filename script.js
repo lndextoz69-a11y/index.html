@@ -1,3 +1,26 @@
+// ฟังก์ชันสำหรับกดฟังเสียง (อ่านข้อความภาษาไทย)
+function speakText(text) {
+    if ('speechSynthesis' in window) {
+        // หยุดเสียงที่กำลังพูดค้างอยู่ก่อน
+        window.speechSynthesis.cancel();
+        
+        let utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'th-TH'; // ตั้งค่าภาษาไทย
+        utterance.rate = 1.0; // ความเร็วในการพูด (ปรับลดลงได้ถ้าอยากให้ช้าลง เช่น 0.9)
+        
+        window.speechSynthesis.speak(utterance);
+    } else {
+        alert("เบราว์เซอร์ของคุณไม่รองรับการอ่านออกเสียง");
+    }
+}
+
+
+
+
+
+
+
+
 // ฟังก์ชันคำนวณยอดเงินรวมอัตโนมัติ
 function calculateTotal() {
     let krungthai = parseFloat(document.getElementById('krungthai').value) || 0;
