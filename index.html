@@ -15,44 +15,35 @@
             <h2 class="main-title">ไก่สด</h2>
             <div class="grid-4">
                 <div class="item-card">
-                    <!-- เปลี่ยนเป็นช่องอัปโหลดรูปภาพตรงนี้ -->
-                    <label class="img-upload-box" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>คลิกเลือกรูป</span>
-                    </label>
+                    <div class="img-box" id="box-fresh-1"><span>png , jpg</span></div>
+                    <input type="text" class="url-input" placeholder="วางลิงก์รูปภาพ..." oninput="updateImage('fresh-1', this.value)">
                     <div class="input-group">
                         <label>จำนวนถุง / เคส</label>
-                        <input type="number" id="fresh_1" value="0" oninput="calculateTotal()">
+                        <input type="number" id="val-fresh-1" value="0" oninput="calculateTotal()">
                     </div>
                 </div>
                 <div class="item-card">
-                    <label class="img-upload-box" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>คลิกเลือกรูป</span>
-                    </label>
+                    <div class="img-box" id="box-fresh-2"><span>png , jpg</span></div>
+                    <input type="text" class="url-input" placeholder="วางลิงก์รูปภาพ..." oninput="updateImage('fresh-2', this.value)">
                     <div class="input-group">
                         <label>จำนวนถุง / เคส</label>
-                        <input type="number" id="fresh_2" value="0" oninput="calculateTotal()">
+                        <input type="number" id="val-fresh-2" value="0" oninput="calculateTotal()">
                     </div>
                 </div>
                 <div class="item-card">
-                    <label class="img-upload-box" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>คลิกเลือกรูป</span>
-                    </label>
+                    <div class="img-box" id="box-fresh-3"><span>png , jpg</span></div>
+                    <input type="text" class="url-input" placeholder="วางลิงก์รูปภาพ..." oninput="updateImage('fresh-3', this.value)">
                     <div class="input-group">
                         <label>จำนวนถุง / เคส</label>
-                        <input type="number" id="fresh_3" value="0" oninput="calculateTotal()">
+                        <input type="number" id="val-fresh-3" value="0" oninput="calculateTotal()">
                     </div>
                 </div>
                 <div class="item-card">
-                    <label class="img-upload-box" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>คลิกเลือกรูป</span>
-                    </label>
+                    <div class="img-box" id="box-fresh-4"><span>png , jpg</span></div>
+                    <input type="text" class="url-input" placeholder="วางลิงก์รูปภาพ..." oninput="updateImage('fresh-4', this.value)">
                     <div class="input-group">
                         <label>จำนวนถุง / เคส</label>
-                        <input type="number" id="fresh_4" value="0" oninput="calculateTotal()">
+                        <input type="number" id="val-fresh-4" value="0" oninput="calculateTotal()">
                     </div>
                 </div>
             </div>
@@ -63,31 +54,23 @@
             <h2 class="main-title">ไก่ที่ทอด</h2>
             <div class="grid-4">
                 <div class="item-card">
-                    <label class="img-upload-box" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>คลิกเลือกรูป</span>
-                    </label>
+                    <div class="img-box" id="box-fried-1"><span>png , jpg</span></div>
+                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('fried-1', this.value)">
                     <span class="label-text">ไก่ที่ทอด</span>
                 </div>
                 <div class="item-card">
-                    <label class="img-upload-box" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>คลิกเลือกรูป</span>
-                    </label>
+                    <div class="img-box" id="box-fried-2"><span>png , jpg</span></div>
+                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('fried-2', this.value)">
                     <span class="label-text">ไก่ที่ทอด</span>
                 </div>
                 <div class="item-card">
-                    <label class="img-upload-box" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>คลิกเลือกรูป</span>
-                    </label>
+                    <div class="img-box" id="box-fried-3"><span>png , jpg</span></div>
+                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('fried-3', this.value)">
                     <span class="label-text">ไก่ที่ทอด</span>
                 </div>
                 <div class="item-card">
-                    <label class="img-upload-box" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>คลิกเลือกรูป</span>
-                    </label>
+                    <div class="img-box" id="box-fried-4"><span>png , jpg</span></div>
+                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('fried-4', this.value)">
                     <span class="label-text">ไก่ที่ทอด</span>
                 </div>
             </div>
@@ -98,66 +81,50 @@
             <h2 class="main-title">ไก่เหลือ</h2>
             <div class="grid-4">
                 <div class="item-card">
-                    <label class="img-upload-box" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>คลิกเลือกรูป</span>
-                    </label>
+                    <div class="img-box" id="box-left-1"><span>png , jpg</span></div>
+                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('left-1', this.value)">
                     <span class="label-text">ไก่เหลือ</span>
                 </div>
                 <div class="item-card">
-                    <label class="img-upload-box" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>คลิกเลือกรูป</span>
-                    </label>
+                    <div class="img-box" id="box-left-2"><span>png , jpg</span></div>
+                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('left-2', this.value)">
                     <span class="label-text">ไก่เหลือ</span>
                 </div>
                 <div class="item-card">
-                    <label class="img-upload-box" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>คลิกเลือกรูป</span>
-                    </label>
+                    <div class="img-box" id="box-left-3"><span>png , jpg</span></div>
+                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('left-3', this.value)">
                     <span class="label-text">ไก่เหลือ</span>
                 </div>
                 <div class="item-card">
-                    <label class="img-upload-box" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>คลิกเลือกรูป</span>
-                    </label>
+                    <div class="img-box" id="box-left-4"><span>png , jpg</span></div>
+                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('left-4', this.value)">
                     <span class="label-text">ไก่เหลือ</span>
                 </div>
             </div>
         </div>
 
-        <!-- ================= หมวดที่ 4: ไก่ที่กิน ================= -->
+        <!-- ================= หมวดที่ 4: ไก่ที่กิน (จากรูปที่ 2) ================= -->
         <div class="section-box">
             <h2 class="main-title">ไก่ที่กิน</h2>
             <div class="vertical-list">
                 <div class="row-item">
-                    <label class="img-upload-box-sm" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>รูป</span>
-                    </label>
+                    <div class="img-box-sm" id="box-eat-1"><span>รูป</span></div>
+                    <input type="text" class="url-input-sm" placeholder="วางลิงก์รูป..." oninput="updateImage('eat-1', this.value)">
                     <div class="input-group-inline"><input type="text" placeholder="กี่ชิ้น"></div>
                 </div>
                 <div class="row-item">
-                    <label class="img-upload-box-sm" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>รูป</span>
-                    </label>
+                    <div class="img-box-sm" id="box-eat-2"><span>รูป</span></div>
+                    <input type="text" class="url-input-sm" placeholder="วางลิงก์รูป..." oninput="updateImage('eat-2', this.value)">
                     <div class="input-group-inline"><input type="text" placeholder="กี่ชิ้น"></div>
                 </div>
                 <div class="row-item">
-                    <label class="img-upload-box-sm" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>รูป</span>
-                    </label>
+                    <div class="img-box-sm" id="box-eat-3"><span>รูป</span></div>
+                    <input type="text" class="url-input-sm" placeholder="วางลิงก์รูป..." oninput="updateImage('eat-3', this.value)">
                     <div class="input-group-inline"><input type="text" placeholder="กี่ชิ้น"></div>
                 </div>
                 <div class="row-item">
-                    <label class="img-upload-box-sm" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>รูป</span>
-                    </label>
+                    <div class="img-box-sm" id="box-eat-4"><span>รูป</span></div>
+                    <input type="text" class="url-input-sm" placeholder="วางลิงก์รูป..." oninput="updateImage('eat-4', this.value)">
                     <div class="input-group-inline"><input type="text" placeholder="กี่ชิ้น"></div>
                 </div>
             </div>
@@ -167,34 +134,26 @@
         <div class="section-box">
             <div class="vertical-list">
                 <div class="row-item">
-                    <label class="img-upload-box-sm" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>รูป</span>
-                    </label>
+                    <div class="img-box-sm" id="box-gas"><span>png</span></div>
+                    <input type="text" class="url-input-sm" placeholder="ลิงก์รูป" oninput="updateImage('gas', this.value)">
                     <div class="label-inline">แก๊ส</div>
                     <div class="input-group-inline"><input type="text" placeholder="กี่ถัง"></div>
                 </div>
                 <div class="row-item">
-                    <label class="img-upload-box-sm" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>รูป</span>
-                    </label>
+                    <div class="img-box-sm" id="box-rice"><span>png</span></div>
+                    <input type="text" class="url-input-sm" placeholder="ลิงก์รูป" oninput="updateImage('rice', this.value)">
                     <div class="label-inline">ข้าว</div>
                     <div class="input-group-inline"><input type="text" placeholder="กี่รอบ"></div>
                 </div>
                 <div class="row-item">
-                    <label class="img-upload-box-sm" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>รูป</span>
-                    </label>
+                    <div class="img-box-sm" id="box-ktb"><span>png</span></div>
+                    <input type="text" class="url-input-sm" placeholder="ลิงก์รูป" oninput="updateImage('ktb', this.value)">
                     <div class="label-inline">กรุงไทย</div>
                     <div class="input-group-inline"><input type="number" id="krungthai" value="0" oninput="calculateTotal()" placeholder="กี่บาท"></div>
                 </div>
                 <div class="row-item">
-                    <label class="img-upload-box-sm" title="อัปโหลดรูปภาพ">
-                        <input type="file" accept="image/png, image/jpeg">
-                        <span>รูป</span>
-                    </label>
+                    <div class="img-box-sm" id="box-cash"><span>png</span></div>
+                    <input type="text" class="url-input-sm" placeholder="ลิงก์รูป" oninput="updateImage('cash', this.value)">
                     <div class="label-inline">เงินสด</div>
                     <div class="input-group-inline"><input type="number" id="cash" value="0" oninput="calculateTotal()" placeholder="กี่บาท"></div>
                 </div>
