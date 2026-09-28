@@ -3,129 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบบันทึกข้อมูลไก่และยอดรวม</title>
+    <title>ระบบนับยอดส่งยอด</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
         
-        <!-- ================= หมวดที่ 1: ไก่สด ================= -->
+        <!-- ================= หมวดที่ 1: ไก่สด (ช่องกรอกแบบมี /) ================= -->
         <div class="section-box">
             <h2 class="main-title">ไก่สด</h2>
             <div class="grid-4">
                 <div class="item-card">
-                    <div class="img-box" id="box-fresh-1"><span>png , jpg</span></div>
-                    <input type="text" class="url-input" placeholder="วางลิงก์รูปภาพ..." oninput="updateImage('fresh-1', this.value)">
-                    <div class="input-group">
-                        <label>จำนวนถุง / เคส</label>
-                        <input type="number" id="val-fresh-1" value="0" oninput="calculateTotal()">
+                    <div class="img-box"><img src="ใส่ลิงก์รูปที่1_ตรงนี้.jpg" alt="ไก่สด 1"></div>
+                    <div class="split-input-group">
+                        <input type="number" maxlength="2" placeholder="00" id="fresh_1_a">
+                        <span class="slash">/</span>
+                        <input type="number" maxlength="2" placeholder="00" id="fresh_1_b">
                     </div>
+                    <span class="sub-label">จำนวนถุง / เคส</span>
                 </div>
                 <div class="item-card">
-                    <div class="img-box" id="box-fresh-2"><span>png , jpg</span></div>
-                    <input type="text" class="url-input" placeholder="วางลิงก์รูปภาพ..." oninput="updateImage('fresh-2', this.value)">
-                    <div class="input-group">
-                        <label>จำนวนถุง / เคส</label>
-                        <input type="number" id="val-fresh-2" value="0" oninput="calculateTotal()">
+                    <div class="img-box"><img src="ใส่ลิงก์รูปที่2_ตรงนี้.jpg" alt="ไก่สด 2"></div>
+                    <div class="split-input-group">
+                        <input type="number" maxlength="2" placeholder="00" id="fresh_2_a">
+                        <span class="slash">/</span>
+                        <input type="number" maxlength="2" placeholder="00" id="fresh_2_b">
                     </div>
+                    <span class="sub-label">จำนวนถุง / เคส</span>
                 </div>
                 <div class="item-card">
-                    <div class="img-box" id="box-fresh-3"><span>png , jpg</span></div>
-                    <input type="text" class="url-input" placeholder="วางลิงก์รูปภาพ..." oninput="updateImage('fresh-3', this.value)">
-                    <div class="input-group">
-                        <label>จำนวนถุง / เคส</label>
-                        <input type="number" id="val-fresh-3" value="0" oninput="calculateTotal()">
+                    <div class="img-box"><img src="ใส่ลิงก์รูปที่3_ตรงนี้.jpg" alt="ไก่สด 3"></div>
+                    <div class="split-input-group">
+                        <input type="number" maxlength="2" placeholder="00" id="fresh_3_a">
+                        <span class="slash">/</span>
+                        <input type="number" maxlength="2" placeholder="00" id="fresh_3_b">
                     </div>
+                    <span class="sub-label">จำนวนถุง / เคส</span>
                 </div>
                 <div class="item-card">
-                    <div class="img-box" id="box-fresh-4"><span>png , jpg</span></div>
-                    <input type="text" class="url-input" placeholder="วางลิงก์รูปภาพ..." oninput="updateImage('fresh-4', this.value)">
-                    <div class="input-group">
-                        <label>จำนวนถุง / เคส</label>
-                        <input type="number" id="val-fresh-4" value="0" oninput="calculateTotal()">
+                    <div class="img-box"><img src="ใส่ลิงก์รูปที่4_ตรงนี้.jpg" alt="ไก่สด 4"></div>
+                    <div class="split-input-group">
+                        <input type="number" maxlength="2" placeholder="00" id="fresh_4_a">
+                        <span class="slash">/</span>
+                        <input type="number" maxlength="2" placeholder="00" id="fresh_4_b">
                     </div>
+                    <span class="sub-label">จำนวนถุง / เคส</span>
                 </div>
             </div>
         </div>
 
-        <!-- ================= หมวดที่ 2: ไก่ที่ทอด ================= -->
+        <!-- ================= หมวดที่ 2: ไก่ที่ทอด (ช่องกรอก 3 หลัก ไม่มี /) ================= -->
         <div class="section-box">
             <h2 class="main-title">ไก่ที่ทอด</h2>
             <div class="grid-4">
                 <div class="item-card">
-                    <div class="img-box" id="box-fried-1"><span>png , jpg</span></div>
-                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('fried-1', this.value)">
-                    <span class="label-text">ไก่ที่ทอด</span>
+                    <div class="img-box"><img src="ใส่ลิงก์รูปไก่ทอด1.jpg" alt="ไก่ทอด"></div>
+                    <input type="number" maxlength="3" class="single-input" placeholder="000">
+                    <span class="sub-label">ไก่ที่ทอด</span>
                 </div>
                 <div class="item-card">
-                    <div class="img-box" id="box-fried-2"><span>png , jpg</span></div>
-                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('fried-2', this.value)">
-                    <span class="label-text">ไก่ที่ทอด</span>
+                    <div class="img-box"><img src="ใส่ลิงก์รูปไก่ทอด2.jpg" alt="ไก่ทอด"></div>
+                    <input type="number" maxlength="3" class="single-input" placeholder="000">
+                    <span class="sub-label">ไก่ที่ทอด</span>
                 </div>
                 <div class="item-card">
-                    <div class="img-box" id="box-fried-3"><span>png , jpg</span></div>
-                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('fried-3', this.value)">
-                    <span class="label-text">ไก่ที่ทอด</span>
+                    <div class="img-box"><img src="ใส่ลิงก์รูปไก่ทอด3.jpg" alt="ไก่ทอด"></div>
+                    <input type="number" maxlength="3" class="single-input" placeholder="000">
+                    <span class="sub-label">ไก่ที่ทอด</span>
                 </div>
                 <div class="item-card">
-                    <div class="img-box" id="box-fried-4"><span>png , jpg</span></div>
-                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('fried-4', this.value)">
-                    <span class="label-text">ไก่ที่ทอด</span>
+                    <div class="img-box"><img src="ใส่ลิงก์รูปไก่ทอด4.jpg" alt="ไก่ทอด"></div>
+                    <input type="number" maxlength="3" class="single-input" placeholder="000">
+                    <span class="sub-label">ไก่ที่ทอด</span>
                 </div>
             </div>
         </div>
 
-        <!-- ================= หมวดที่ 3: ไก่เหลือ ================= -->
+        <!-- ================= หมวดที่ 3: ไก่เหลือ (ช่องกรอก 2 หลัก ไม่มี /) ================= -->
         <div class="section-box">
             <h2 class="main-title">ไก่เหลือ</h2>
             <div class="grid-4">
                 <div class="item-card">
-                    <div class="img-box" id="box-left-1"><span>png , jpg</span></div>
-                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('left-1', this.value)">
-                    <span class="label-text">ไก่เหลือ</span>
+                    <div class="img-box"><img src="ใส่ลิงก์รูปไก่เหลือ1.jpg" alt="ไก่เหลือ"></div>
+                    <input type="number" maxlength="2" class="single-input" placeholder="00">
+                    <span class="sub-label">ไก่เหลือ</span>
                 </div>
                 <div class="item-card">
-                    <div class="img-box" id="box-left-2"><span>png , jpg</span></div>
-                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('left-2', this.value)">
-                    <span class="label-text">ไก่เหลือ</span>
+                    <div class="img-box"><img src="ใส่ลิงก์รูปไก่เหลือ2.jpg" alt="ไก่เหลือ"></div>
+                    <input type="number" maxlength="2" class="single-input" placeholder="00">
+                    <span class="sub-label">ไก่เหลือ</span>
                 </div>
                 <div class="item-card">
-                    <div class="img-box" id="box-left-3"><span>png , jpg</span></div>
-                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('left-3', this.value)">
-                    <span class="label-text">ไก่เหลือ</span>
+                    <div class="img-box"><img src="ใส่ลิงก์รูปไก่เหลือ3.jpg" alt="ไก่เหลือ"></div>
+                    <input type="number" maxlength="2" class="single-input" placeholder="00">
+                    <span class="sub-label">ไก่เหลือ</span>
                 </div>
                 <div class="item-card">
-                    <div class="img-box" id="box-left-4"><span>png , jpg</span></div>
-                    <input type="text" class="url-input" placeholder="วางลิงก์รูป..." oninput="updateImage('left-4', this.value)">
-                    <span class="label-text">ไก่เหลือ</span>
+                    <div class="img-box"><img src="ใส่ลิงก์รูปไก่เหลือ4.jpg" alt="ไก่เหลือ"></div>
+                    <input type="number" maxlength="2" class="single-input" placeholder="00">
+                    <span class="sub-label">ไก่เหลือ</span>
                 </div>
             </div>
         </div>
 
-        <!-- ================= หมวดที่ 4: ไก่ที่กิน (จากรูปที่ 2) ================= -->
+        <!-- ================= หมวดที่ 4: ไก่ที่กิน (เรียงแถวลงมาตามแบบ) ================= -->
         <div class="section-box">
             <h2 class="main-title">ไก่ที่กิน</h2>
             <div class="vertical-list">
                 <div class="row-item">
-                    <div class="img-box-sm" id="box-eat-1"><span>รูป</span></div>
-                    <input type="text" class="url-input-sm" placeholder="วางลิงก์รูป..." oninput="updateImage('eat-1', this.value)">
-                    <div class="input-group-inline"><input type="text" placeholder="กี่ชิ้น"></div>
+                    <div class="img-box-sm"><img src="ลิงก์รูปกิน1.jpg" alt="รูป"></div>
+                    <div class="input-group-inline"><input type="number" placeholder="กี่ชิ้น"></div>
                 </div>
                 <div class="row-item">
-                    <div class="img-box-sm" id="box-eat-2"><span>รูป</span></div>
-                    <input type="text" class="url-input-sm" placeholder="วางลิงก์รูป..." oninput="updateImage('eat-2', this.value)">
-                    <div class="input-group-inline"><input type="text" placeholder="กี่ชิ้น"></div>
+                    <div class="img-box-sm"><img src="ลิงก์รูปกิน2.jpg" alt="รูป"></div>
+                    <div class="input-group-inline"><input type="number" placeholder="กี่ชิ้น"></div>
                 </div>
                 <div class="row-item">
-                    <div class="img-box-sm" id="box-eat-3"><span>รูป</span></div>
-                    <input type="text" class="url-input-sm" placeholder="วางลิงก์รูป..." oninput="updateImage('eat-3', this.value)">
-                    <div class="input-group-inline"><input type="text" placeholder="กี่ชิ้น"></div>
+                    <div class="img-box-sm"><img src="ลิงก์รูปกิน3.jpg" alt="รูป"></div>
+                    <div class="input-group-inline"><input type="number" placeholder="กี่ชิ้น"></div>
                 </div>
                 <div class="row-item">
-                    <div class="img-box-sm" id="box-eat-4"><span>รูป</span></div>
-                    <input type="text" class="url-input-sm" placeholder="วางลิงก์รูป..." oninput="updateImage('eat-4', this.value)">
-                    <div class="input-group-inline"><input type="text" placeholder="กี่ชิ้น"></div>
+                    <div class="img-box-sm"><img src="ลิงก์รูปกิน4.jpg" alt="รูป"></div>
+                    <div class="input-group-inline"><input type="number" placeholder="กี่ชิ้น"></div>
                 </div>
             </div>
         </div>
@@ -134,26 +134,22 @@
         <div class="section-box">
             <div class="vertical-list">
                 <div class="row-item">
-                    <div class="img-box-sm" id="box-gas"><span>png</span></div>
-                    <input type="text" class="url-input-sm" placeholder="ลิงก์รูป" oninput="updateImage('gas', this.value)">
+                    <div class="img-box-sm"><img src="ลิงก์รูปแก๊ส.jpg" alt="แก๊ส"></div>
                     <div class="label-inline">แก๊ส</div>
-                    <div class="input-group-inline"><input type="text" placeholder="กี่ถัง"></div>
+                    <div class="input-group-inline"><input type="number" placeholder="กี่ถัง"></div>
                 </div>
                 <div class="row-item">
-                    <div class="img-box-sm" id="box-rice"><span>png</span></div>
-                    <input type="text" class="url-input-sm" placeholder="ลิงก์รูป" oninput="updateImage('rice', this.value)">
+                    <div class="img-box-sm"><img src="ลิงก์รูปข้าว.jpg" alt="ข้าว"></div>
                     <div class="label-inline">ข้าว</div>
-                    <div class="input-group-inline"><input type="text" placeholder="กี่รอบ"></div>
+                    <div class="input-group-inline"><input type="number" placeholder="กี่รอบ"></div>
                 </div>
                 <div class="row-item">
-                    <div class="img-box-sm" id="box-ktb"><span>png</span></div>
-                    <input type="text" class="url-input-sm" placeholder="ลิงก์รูป" oninput="updateImage('ktb', this.value)">
+                    <div class="img-box-sm"><img src="ลิงก์รูปกรุงไทย.jpg" alt="กรุงไทย"></div>
                     <div class="label-inline">กรุงไทย</div>
                     <div class="input-group-inline"><input type="number" id="krungthai" value="0" oninput="calculateTotal()" placeholder="กี่บาท"></div>
                 </div>
                 <div class="row-item">
-                    <div class="img-box-sm" id="box-cash"><span>png</span></div>
-                    <input type="text" class="url-input-sm" placeholder="ลิงก์รูป" oninput="updateImage('cash', this.value)">
+                    <div class="img-box-sm"><img src="ลิงก์รูปเงินสด.jpg" alt="เงินสด"></div>
                     <div class="label-inline">เงินสด</div>
                     <div class="input-group-inline"><input type="number" id="cash" value="0" oninput="calculateTotal()" placeholder="กี่บาท"></div>
                 </div>
@@ -178,4 +174,5 @@
 
     <script src="script.js"></script>
 </body>
-</html>
+                                                        </html>
+                                                        
