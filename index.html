@@ -176,5 +176,48 @@
     </div>
 
     <script src="script.js"></script>
+
+
+
+
+<!-- ปุ่มเปิดหน้าต่างแชทเล็กๆ -->
+<button onclick="openAiModal()" style="position: fixed; bottom: 20px; right: 20px; background: #3b6fe0; color: white; border: none; border-radius: 50px; padding: 12px 20px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 999;">
+    💬 เปิดแชท AI ฟังเสียง
+</button>
+
+<!-- หน้าต่างป๊อปอัป (Modal) -->
+<div id="aiModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: #1a1e28; width: 90%; max-width: 400px; height: 500px; border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; border: 1px solid #2c3242; color: white;">
+        
+        <!-- หัวกล่องป๊อปอัป -->
+        <div style="padding: 12px 16px; background: #12151c; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2c3242;">
+            <h3 style="margin: 0; font-size: 16px;">AI ผู้ช่วยอ่านข้อความ</h3>
+            <button onclick="closeAiModal()" style="background: none; border: none; color: #8b93a4; font-size: 20px; cursor: pointer;">✕</button>
+        </div>
+
+        <!-- พื้นที่แสดงข้อความแชท -->
+        <div id="aiChatBox" style="flex: 1; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;">
+            <div style="background: #2a2f3a; padding: 10px 12px; border-radius: 12px; max-width: 80%; font-size: 14px;">
+                สวัสดีครับ! วางข้อความยอดไก่ของคุณลงข้างล่างนี้ได้เลย เดี๋ยวผมจะส่งกลับมาให้และมีปุ่มกดฟังเสียงครับ 🍗
+            </div>
+        </div>
+
+        <!-- แถบพิมพ์/วางข้อความด้านล่าง -->
+        <div style="padding: 10px; background: #12151c; border-top: 1px solid #2c3242; display: flex; gap: 8px;">
+            <textarea id="aiInput" placeholder="แตะค้างเพื่อวางข้อความที่คัดลอกมา..." style="flex: 1; background: #1a1e28; color: white; border: 1px solid #2c3242; border-radius: 8px; padding: 8px; resize: none; height: 40px; font-family: inherit; outline: none;"></textarea>
+            <button onclick="sendTextToAi()" style="background: #3b6fe0; color: white; border: none; border-radius: 8px; padding: 0 16px; cursor: pointer; font-weight: bold;">ส่ง</button>
+        </div>
+
+    </div>
+</div>
+    
+
+
+
+
+
+
+
+    
 </body>
 </html>
