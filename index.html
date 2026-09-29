@@ -179,26 +179,26 @@
 
 
 
-<!-- ปุ่มกดเปิดกล่องหน้าต่างเล็ก -->
-<button onclick="openSpeechBox()" style="position: fixed; bottom: 20px; right: 20px; background: #ff4757; color: white; border: none; border-radius: 30px; padding: 12px 20px; font-size: 16px; font-weight: bold; cursor: pointer; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
-    💬 เปิดหน้าต่างฟังเสียง
+<!-- ปุ่มเปิดหน้าต่างกล่องข้อความ (มุมขวาล่าง) -->
+<button onclick="openGeminiSpeechBox()" style="position: fixed; bottom: 20px; right: 20px; background: #3b6fe0; color: white; border: none; border-radius: 30px; padding: 12px 20px; font-size: 16px; font-weight: bold; cursor: pointer; z-index: 9999; box-shadow: 0 4px 12px rgba(0,0,0,0.4);">
+    🎙️ วางข้อความฟังเสียง (สไตล์ Gemini)
 </button>
 
-<!-- หน้าต่างสี่เหลี่ยมจิ๋วสำหรับวางข้อความ -->
-<div id="mySpeechModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 10000; align-items: center; justify-content: center;">
-    <div style="background: #ffffff; width: 90%; max-width: 350px; border-radius: 12px; padding: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); display: flex; flexDirection: column; gap: 12px;">
+<!-- หน้าต่างสี่เหลี่ยมจิ๋ว -->
+<div id="geminiSpeechModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 10000; align-items: center; justify-content: center;">
+    <div style="background: #1a1e28; width: 90%; max-width: 360px; border-radius: 16px; padding: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.5); display: flex; flex-direction: column; gap: 12px; border: 1px solid #2c3242; color: white;">
         
         <!-- หัวข้อและปุ่มปิด -->
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 8px;">
-            <h3 style="margin: 0; font-size: 16px; color: #333;">วางข้อความเพื่อฟังเสียง</h3>
-            <button onclick="closeSpeechBox()" style="background: none; border: none; font-size: 20px; cursor: pointer; color: #666;">✕</button>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2c3242; padding-bottom: 8px;">
+            <h3 style="margin: 0; font-size: 16px; color: #fff;">เครื่องมืออ่านข้อความเสียง</h3>
+            <button onclick="closeGeminiSpeechBox()" style="background: none; border: none; font-size: 20px; cursor: pointer; color: #8b93a4;">✕</button>
         </div>
 
-        <!-- ช่องใส่ข้อความ (ก๊อปมาวางตรงนี้) -->
-        <textarea id="myInputText" placeholder="แตะค้างไว้แล้วกดวางข้อความที่คัดลอกมาตรงนี้..." style="width: 100%; height: 120px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; resize: vertical; outline: none; box-sizing: border-box;"></textarea>
+        <!-- ช่องใส่ข้อความ (วางที่คัดลอกมา) -->
+        <textarea id="geminiInputText" placeholder="แตะค้างไว้แล้ววางข้อความยอดไก่ที่คัดลอกมาตรงนี้..." style="width: 100%; height: 130px; background: #12151c; color: white; padding: 10px; border: 1px solid #2c3242; border-radius: 8px; font-size: 14px; resize: none; outline: none; box-sizing: border-box;"></textarea>
 
         <!-- ปุ่มกดสั่งให้อ่านเสียง -->
-        <button onclick="readTheTextOutLoud()" style="background: #2ed573; color: white; border: none; border-radius: 8px; padding: 12px; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%;">
+        <button onclick="playGeminiStyleSpeech()" style="background: #3b6fe0; color: white; border: none; border-radius: 8px; padding: 12px; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 6px;">
             🔊 กดฟังเสียง
         </button>
     </div>
