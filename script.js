@@ -138,28 +138,37 @@ function copyData() {
 
 
 
+// ฟังก์ชันเปิด-ปิด หน้าต่างกล่องข้อความ
+function toggleAudioBox() {
+    const modal = document.getElementById('audioBoxModal');
+    if (modal.style.display === 'none' || modal.style.display === '') {
+        modal.style.display = 'flex';
+    } else {
+        modal.style.display = 'none';
+    }
+}
 
-<!-- ปุ่มเปิดกล่องฟังเสียง (ลอยอยู่มุมขวาล่าง) -->
-<button onclick="toggleAudioBox()" style="position: fixed; bottom: 80px; right: 20px; background: #2ed573; color: white; border: none; border-radius: 50px; padding: 12px 20px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 999; font-weight: bold;">
-    🔊 วางข้อความแล้วฟังเสียง
-</button>
+// ฟังก์ชันสั่งให้อ่านข้อความที่ผู้ใช้นำมาวาง
+function playPastedText() {
+    const textBox = document.getElementById('pasteTextBox');
+    const textToRead = textBox.value.trim();
 
-<!-- หน้าต่างสี่เหลี่ยมเล็กๆ เปิด-ปิด และขยายได้ (Resizable) -->
-<div id="audioBoxModal" style="display: none; position: fixed; bottom: 140px; right: 20px; width: 320px; height: 260px; background: #1a1e28; border: 1px solid #2c3242; border-radius: 12px; z-index: 1000; flex-direction: column; box-shadow: 0 8px 24px rgba(0,0,0,0.5); resize: both; overflow: hidden; color: white;">
+    if (!textToRead) {
+        alert('กรุณาวางข้อความที่ต้องการให้อ่านก่อนครับ');
+        return;
+    }
+
+    if (!('speechSynthesis' in window)) {
+        alert('เบราว์เซอร์ของคุณไม่รองรับการอ่านออกเสียงครับ');
+        return;
+    }
+
+    // หยุดเสียงเก่าที่ค้างอยู่ก่อนเริ่มอ่านใหม่
+    window.speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(textToRead);
+    utterance.lang = 'th-TH'; // กำหนดให้เป็นเสียงภาษาไทย
     
-    <!-- หัวกล่อง (สำหรับลากหรือกดปิด) -->
-    <div style="background: #12151c; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2c3242; cursor: move;">
-        <span style="font-size: 14px; font-weight: bold;">🔊 กล่องอ่านข้อความเสียง</span>
-        <button onclick="toggleAudioBox()" style="background: none; border: none; color: #8b93a4; font-size: 18px; cursor: pointer;">✕</button>
-    </div>
+    window.speechSynthesis.speak(utterance);
+}
 
-    <!-- ส่วนเนื้อหาด้านใน: ช่องให้วางข้อความ และปุ่มกดฟัง -->
-    <div style="padding: 12px; flex: 1; display: flex; flex-direction: column; gap: 8px; overflow: hidden;">
-        <textarea id="pasteTextBox" placeholder="แตะค้างไว้เพื่อวางข้อความที่คัดลอกมาตรงนี้..." style="flex: 1; background: #12151c; color: white; border: 1px solid #2c3242; border-radius: 8px; padding: 8px; resize: none; font-family: inherit; font-size: 14px; outline: none;"></textarea>
-        
-        <button onclick="playPastedText()" style="background: #3b6fe0; color: white; border: none; border-radius: 8px; padding: 10px; font-size: 15px; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 6px;">
-            🔊 กดฟังเสียงข้อความนี้
-        </button>
-    </div>
-</div>
-    
