@@ -48,7 +48,7 @@ function copyData() {
     // ฟังก์ชันช่วยจัดการบรรทัด: ถ้ามีข้อมูลให้ใส่ในวงเล็บ ถ้าไม่มีให้ลบวงเล็บทิ้งเหลือแค่ชื่อหัวข้อ
     function formatLine(label, val) {
         if (val !== "" && val !== null && val !== undefined && val !== 0 && val !== "0" && val !== "0/0") {
-            return `${label} (${val})`;
+            return `${label} ${val}`;
         } else {
             return `${label}`; // ไม่มีข้อมูล ลบวงเล็บทิ้ง เหลือแค่หัวข้อ
         }
