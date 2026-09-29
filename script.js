@@ -138,37 +138,36 @@ function copyData() {
 
 
 
-// ฟังก์ชันเปิด-ปิด หน้าต่างกล่องข้อความ
-function toggleAudioBox() {
-    const modal = document.getElementById('audioBoxModal');
-    if (modal.style.display === 'none' || modal.style.display === '') {
-        modal.style.display = 'flex';
-    } else {
-        modal.style.display = 'none';
-    }
+// เปิดหน้าต่าง
+function openSpeechBox() {
+    document.getElementById('mySpeechModal').style.display = 'flex';
 }
 
-// ฟังก์ชันสั่งให้อ่านข้อความที่ผู้ใช้นำมาวาง
-function playPastedText() {
-    const textBox = document.getElementById('pasteTextBox');
-    const textToRead = textBox.value.trim();
+// ปิดหน้าต่าง
+function closeSpeechBox() {
+    document.getElementById('mySpeechModal').style.display = 'none';
+}
 
-    if (!textToRead) {
-        alert('กรุณาวางข้อความที่ต้องการให้อ่านก่อนครับ');
+// ฟังก์ชันอ่านข้อความในช่อง
+function readTheTextOutLoud() {
+    const text = document.getElementById('myInputText').value.trim();
+    
+    if (!text) {
+        alert('กรุณาวางข้อความก่อนครับ');
         return;
     }
 
     if (!('speechSynthesis' in window)) {
-        alert('เบราว์เซอร์ของคุณไม่รองรับการอ่านออกเสียงครับ');
+        alert('มือถือของคุณไม่รองรับการอ่านออกเสียงครับ');
         return;
     }
 
-    // หยุดเสียงเก่าที่ค้างอยู่ก่อนเริ่มอ่านใหม่
+    // หยุดเสียงเก่าถ้ามีค้างอยู่
     window.speechSynthesis.cancel();
 
-    const utterance = new SpeechSynthesisUtterance(textToRead);
-    utterance.lang = 'th-TH'; // กำหนดให้เป็นเสียงภาษาไทย
-    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'th-TH'; // กำหนดเป็นภาษาไทย
+    utterance.rate = 1.0; // ความเร็วปกติ
+
     window.speechSynthesis.speak(utterance);
 }
-
