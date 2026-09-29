@@ -139,79 +139,27 @@ function copyData() {
 
 
 
+<!-- ปุ่มเปิดกล่องฟังเสียง (ลอยอยู่มุมขวาล่าง) -->
+<button onclick="toggleAudioBox()" style="position: fixed; bottom: 80px; right: 20px; background: #2ed573; color: white; border: none; border-radius: 50px; padding: 12px 20px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 999; font-weight: bold;">
+    🔊 วางข้อความแล้วฟังเสียง
+</button>
 
-
-// ฟังก์ชันเปิด-ปิด หน้าต่างป๊อปอัป
-function openAiModal() {
-    document.getElementById('aiModal').style.display = 'flex';
-}
-function closeAiModal() {
-    document.getElementById('aiModal').style.display = 'none';
-}
-
-// ฟังก์ชันระบบเสียงพูด (Text-to-Speech)
-function speakMessage(text, btnElement) {
-    if (!('speechSynthesis' in window)) {
-        alert('เบราว์เซอร์ของคุณไม่รองรับการอ่านออกเสียง');
-        return;
-    }
+<!-- หน้าต่างสี่เหลี่ยมเล็กๆ เปิด-ปิด และขยายได้ (Resizable) -->
+<div id="audioBoxModal" style="display: none; position: fixed; bottom: 140px; right: 20px; width: 320px; height: 260px; background: #1a1e28; border: 1px solid #2c3242; border-radius: 12px; z-index: 1000; flex-direction: column; box-shadow: 0 8px 24px rgba(0,0,0,0.5); resize: both; overflow: hidden; color: white;">
     
-    // ถ้ารอบริบทราบว่ากำลังพูดอยู่ ให้หยุดก่อน
-    window.speechSynthesis.cancel();
-    
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'th-TH'; // ตั้งค่าเสียงภาษาไทย
-    
-    // เปลี่ยนสไตล์ปุ่มเวลาพูดเสร็จ
-    utterance.onend = () => {
-        btnElement.style.background = '#3b6fe0';
-        btnElement.textContent = '🔊 ฟังเสียง';
-    };
+    <!-- หัวกล่อง (สำหรับลากหรือกดปิด) -->
+    <div style="background: #12151c; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2c3242; cursor: move;">
+        <span style="font-size: 14px; font-weight: bold;">🔊 กล่องอ่านข้อความเสียง</span>
+        <button onclick="toggleAudioBox()" style="background: none; border: none; color: #8b93a4; font-size: 18px; cursor: pointer;">✕</button>
+    </div>
 
-    btnElement.style.background = '#2ed573'; // เปลี่ยนสีปุ่มตอนกำลังพูด
-    btnElement.textContent = '🔊 กำลังพูด...';
-    
-    window.speechSynthesis.speak(utterance);
-}
-
-// ฟังก์ชันกดส่งข้อความ (จำลองรับคำสั่ง ส่งกลับมาเหมือนเดิม + สร้างปุ่มเสียงพูด)
-function sendTextToAi() {
-    const input = document.getElementById('aiInput');
-    const text = input.value.trim();
-    if (!text) return;
-
-    const chatBox = document.getElementById('aiChatBox');
-
-    // 1. แสดงข้อความฝั่งผู้ใช้ (User)
-    const userMsg = document.createElement('div');
-    userMsg.style.cssText = 'background: #3b6fe0; padding: 10px 12px; border-radius: 12px; max-width: 80%; align-self: flex-end; font-size: 14px; word-break: break-word;';
-    userMsg.textContent = text;
-    chatBox.appendChild(userMsg);
-
-    input.value = ''; //เคลียร์ช่องพิมพ์
-    chatBox.scrollTop = chatBox.scrollHeight;
-
-    // 2. จำลองการตอบกลับจากระบบ/AI (ส่งข้อความเดิมกลับมาพร้อมปุ่มกดฟังเสียง)
-    setTimeout(() => {
-        const aiRow = document.createElement('div');
-        aiRow.style.cssText = 'display: flex; flex-direction: column; align-items: flex-start; gap: 6px; max-width: 85%;';
+    <!-- ส่วนเนื้อหาด้านใน: ช่องให้วางข้อความ และปุ่มกดฟัง -->
+    <div style="padding: 12px; flex: 1; display: flex; flex-direction: column; gap: 8px; overflow: hidden;">
+        <textarea id="pasteTextBox" placeholder="แตะค้างไว้เพื่อวางข้อความที่คัดลอกมาตรงนี้..." style="flex: 1; background: #12151c; color: white; border: 1px solid #2c3242; border-radius: 8px; padding: 8px; resize: none; font-family: inherit; font-size: 14px; outline: none;"></textarea>
         
-        const aiBubble = document.createElement('div');
-        aiBubble.style.cssText = 'background: #2a2f3a; padding: 10px 12px; border-radius: 12px; font-size: 14px; word-break: break-word; width: 100%;';
-        aiBubble.textContent = text; // ส่งข้อความกลับมาแบบเดิมตามที่คุณต้องการ
-
-        // สร้างปุ่มกดฟังเสียง 🔊
-        const speakBtn = document.createElement('button');
-        speakBtn.style.cssText = 'background: #3b6fe0; color: white; border: none; border-radius: 6px; padding: 6px 12px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 4px;';
-        speakBtn.innerHTML = '🔊 ฟังเสียง';
-        
-        // ผูกฟังก์ชันกดอ่านเสียง
-        speakBtn.onclick = () => speakMessage(text, speakBtn);
-
-        aiRow.appendChild(aiBubble);
-        aiRow.appendChild(speakBtn);
-        chatBox.appendChild(aiRow);
-
-        chatBox.scrollTop = chatBox.scrollHeight;
-    }, 400);
-}
+        <button onclick="playPastedText()" style="background: #3b6fe0; color: white; border: none; border-radius: 8px; padding: 10px; font-size: 15px; cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 6px;">
+            🔊 กดฟังเสียงข้อความนี้
+        </button>
+    </div>
+</div>
+    
