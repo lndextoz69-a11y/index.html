@@ -139,18 +139,18 @@ function copyData() {
 
 
 // เปิดหน้าต่าง
-function openSpeechBox() {
-    document.getElementById('mySpeechModal').style.display = 'flex';
+function openGeminiSpeechBox() {
+    document.getElementById('geminiSpeechModal').style.display = 'flex';
 }
 
 // ปิดหน้าต่าง
-function closeSpeechBox() {
-    document.getElementById('mySpeechModal').style.display = 'none';
+function closeGeminiSpeechBox() {
+    document.getElementById('geminiSpeechModal').style.display = 'none';
 }
 
-// ฟังก์ชันอ่านข้อความในช่อง
-function readTheTextOutLoud() {
-    const text = document.getElementById('myInputText').value.trim();
+// ฟังก์ชันอ่านข้อความด้วยเสียงภาษาไทยที่ชัดและเป็นธรรมชาติที่สุด
+function playGeminiStyleSpeech() {
+    const text = document.getElementById('geminiInputText').value.trim();
     
     if (!text) {
         alert('กรุณาวางข้อความก่อนครับ');
@@ -166,8 +166,23 @@ function readTheTextOutLoud() {
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'th-TH'; // กำหนดเป็นภาษาไทย
-    utterance.rate = 1.0; // ความเร็วปกติ
+    utterance.lang = 'th-TH'; // บังคับภาษาไทย
+    utterance.rate = 1.0;  // ความเร็วปกติ (ปรับให้ช้าลงนิดนึงได้ เช่น 0.9 ถ้าอยากให้ฟังชัดเจนขึ้น)
+    utterance.pitch = 1.0; // ระดับเสียง
+
+    // พยายามดึงเสียงภาษาไทยที่ดีที่สุดของเครื่อง (เช่น เสียง Google Thai ถ้ามี)
+    const voices = window.speechSynthesis.getVoices();
+    const thaiVoice = voices.find(v => v.lang === 'th-TH' || v.lang.includes('th'));
+    if (thaiVoice) {
+        utterance.voice = thaiVoice;
+    }
 
     window.speechSynthesis.speak(utterance);
+}
+
+// โหลดรายชื่อเสียงล่วงหน้า (บางมือถือต้องเรียกอันนี้เพื่อให้เจอเสียงภาษาไทยชัดๆ)
+if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+    };
 }
